@@ -2,6 +2,11 @@
 var ObjectID = require('mongodb').ObjectID;
 
 module.exports = function(app, db) {
+    app.get('/', (req, res) => {
+        res.send('Hello World');
+
+    });
+
     
     // POST (pass arguments in 'body')
     app.post('/solution', (req, res) => {
