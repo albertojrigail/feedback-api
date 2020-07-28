@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const db = require('./config/db');
 
 const app = express();
-const port = 80;
+const port = 10;
 
 
 
