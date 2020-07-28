@@ -15,6 +15,6 @@ MongoClient.connect(db.url, { useNewUrlParser: true, useUnifiedTopology: true },
     if (err) return console.log(err);
     var database = database.db('feedback-api')
     require('./app/routes')(app, database);
-    app.listen(port, () => {
+    app.listen(port, '0.0.0.0', () => {
         console.log('We are live on ' + port);});
 });
