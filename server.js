@@ -14,4 +14,8 @@ if (err) return console.log(err);
 var database = database.db('feedback-api')
 require('./app/routes')(app, database);
 app.listen(port, '0.0.0.0');
+
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/pages/homepage.html');
+});
 console.log('We are live on ' + port);});
