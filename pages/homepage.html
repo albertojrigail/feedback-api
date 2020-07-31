@@ -77,7 +77,7 @@
     if(searchParams.has('pid')) {
       var problemId = searchParams.get('pid');
       $.get( 'http://34.96.245.124:2999/problem/' + problemId, function( data ) {
-        let json = JSON.parse(data);
+        let json = JSON.parse(JSON.stringify(data));
 			  let title = json['title'];
         let prompt = json['prompt'];
         console.log(prompt);
