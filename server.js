@@ -9,13 +9,15 @@ const port = 2999;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-MongoClient.connect(db.url, { useNewUrlParser: true, useUnifiedTopology: true }, (err, database) => {
-if (err) return console.log(err);
-var database = database.db('feedback-api')
-require('./app/routes')(app, database);
-app.listen(port, '0.0.0.0');
+MongoClient.connect(db.url, { useNewUrlParser: true, useUnifiedTopology: true }, (err, database) =>{
+    if (err) return console.log(err);
+    var database = database.db('feedback-api')
+    require('./app/routes')(app, database);
+    app.listen(port, '0.0.0.0');
 
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/pages/homepage.html');
+    app.get('/', (req, res) => {
+        var uid = req.params.id;
+        res.sendFile(__dirname + '/pages/homepage.html');
+    });
+    console.log('We are live on ' + port);
 });
-console.log('We are live on ' + port);});
