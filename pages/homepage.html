@@ -50,7 +50,7 @@
         <div class="form-group">
           <form>
             <input type='hidden' name='uid'>
-            <textarea class="form-control" rows="8" autofocus="true"></textarea>
+            <textarea class="form-control solution" rows="8" autofocus="true"></textarea>
             <button type="submit" formmethod="POST" btn btn-outline-primary>Submit🚀</button>
           </form>
         </div>
@@ -80,12 +80,18 @@
         let json = JSON.parse(JSON.stringify(data));
 			  let title = json['title'];
         let prompt = json['prompt'];
+        let solutionTemplate = json['solutionTemplate'];
         console.log(prompt);
         let problem = '';
         prompt.forEach(paragraph => {
           problem += paragraph + '\n\n';
         });
+        let solution = '';
+        solutionTemplate.forEach(line => {
+          solution += line + '\n    ';
+        });
         $('.problem').text(problem);
+        $('.solution').text(solution);
       });
     }
   </script>
