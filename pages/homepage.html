@@ -46,7 +46,7 @@
       </div>
       <div>
         <h3>Submit your solution here:</h3>
-        <p class="lead problem"></p>
+        <p class="lead"></p>
         <div class="form-group">
           <form>
             <input type='hidden' name='uid'>
@@ -76,18 +76,17 @@
     // ProblemId
     if(searchParams.has('pid')) {
       var problemId = searchParams.get('pid');
-      // request http
-      const request = require('request');
-      request('http://34.96.245.124:2999/problem/' + problemId, function(err, res, body) {
-			  let json = JSON.parse(body);
+      $.get( 'http://34.96.245.124:2999/problem/' + problemId, function( data ) {
+        let json = JSON.parse(data);
 			  let title = json['title'];
         let prompt = json['prompt'];
+        console.log(prompt);
         let problem = '';
         prompt.forEach(paragraph => {
           problem += paragraph + '\n\n';
         });
         $('.problem').text(problem);
-		  });
+      });
     }
   </script>
 </html>
