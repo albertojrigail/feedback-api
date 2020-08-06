@@ -81,6 +81,8 @@
     // DateTime
     var datetime = searchParams.get('datetime');
 
+    let solutionTemplate = [''];
+
     // ProblemId
     if(searchParams.has('pid')) {
       var problemId = searchParams.get('pid');
@@ -98,22 +100,23 @@
         });
         $('.problem').text(problem);
 
-        // Editor script
-        var theme='ace/theme/cobalt';
-        var mode='ace/mode/python';
-        var editor= ace.edit('ace-editorid');
-        editor.setTheme(theme);
-        editor.getSession().setMode(mode);
-        
-        // Set editor text
-        var solution = "#---------------------------\n# Write your solution below";
-        solutionTemplate.forEach(line => {
-              solution += line + '\n    ';
-            });
-        editor.session.setValue(solution);        
       });
     }
-
+    
+    // Editor script
+    var theme='ace/theme/cobalt';
+    var mode='ace/mode/python';
+    var editor= ace.edit('ace-editorid');
+    editor.setTheme(theme);
+    editor.getSession().setMode(mode);
+    
+    // Set editor text
+    var solution = '#---------------------------\n# Write your solution below';
+    solutionTemplate.forEach(line => {
+          solution += line + '\n    ';
+        });
+    console.log(solution);
+    editor.session.setValue(solution);        
 
   </script>
 </html>
