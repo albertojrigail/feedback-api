@@ -1,4 +1,4 @@
-<!doctype html>
+<!Doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -7,13 +7,18 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v4.0.1">
     <title>Submit Your Solution</title>
+
+     <!--EDITOR-->
+     <link rel="stylesheet" href="/editor/editor.css">
+     <script src="/editor/ace.js"></script>
+
+    <!--BOOTSTRAP-->
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/grid/">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">    
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    
     <!-- Bootstrap core CSS -->
     <style>
       .bd-placeholder-img {
@@ -45,23 +50,26 @@
         <p class="lead problem"></p>
       </div>
       <div>
-        <h3>Submit your solution here:</h3>
         <p class="lead"></p>
-        <div class="form-group">
-          <form>
-            <input type='hidden' name='uid'>
-            <textarea class="form-control solution" rows="8" autofocus="true"></textarea>
-            <button type="submit" formmethod="POST" btn btn-outline-primary>Submit🚀</button>
-          </form>
-        </div>
-      </div>
+        <form>
+          <input type='hidden' name='uid'>
+          <div class="wrapper">
+            <code id="ace-editorid"></code>
+          </div>    
+          <br>      
+          <button type="submit" formmethod="POST" btn btn-outline-primary>Submit🚀</button>
+        </form>
+      <br>
       <p class="lead">Your solution will be sent to the other user by email. <br>
         Thanks for contributing to an amazing peer reviewed system! ⚡️🤝</p>
     </div>
   </body>
 
+ 
+
   <script>
     let searchParams = new URLSearchParams(window.location.search);
+    console.log(searchParams);
     // User Id
     if (searchParams.has('uid')){
       userId = searchParams.get('uid');
@@ -77,22 +85,35 @@
     if(searchParams.has('pid')) {
       var problemId = searchParams.get('pid');
       $.get( 'http://34.96.245.124:2999/problem/' + problemId, function( data ) {
+        // Query data
         let json = JSON.parse(JSON.stringify(data));
 			  let title = json['title'];
         let prompt = json['prompt'];
         let solutionTemplate = json['solution_template'];
-        console.log(prompt);
+
+        // Set problem text
         let problem = '';
         prompt.forEach(paragraph => {
           problem += paragraph + '\n\n';
         });
-        let solution = '';
-        solutionTemplate.forEach(line => {
-          solution += line + '\n    ';
-        });
         $('.problem').text(problem);
-        $('.solution').text(solution);
+
+        // Editor script
+        var theme='ace/theme/cobalt';
+        var mode='ace/mode/python';
+        var editor= ace.edit('ace-editorid');
+        editor.setTheme(theme);
+        editor.getSession().setMode(mode);
+        
+        // Set editor text
+        var solution = "#---------------------------\n# Write your solution below";
+        solutionTemplate.forEach(line => {
+              solution += line + '\n    ';
+            });
+        editor.session.setValue(solution);        
       });
     }
+
+
   </script>
 </html>

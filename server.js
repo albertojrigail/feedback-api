@@ -17,7 +17,7 @@ MongoClient.connect(db.url, { useNewUrlParser: true, useUnifiedTopology: true },
 
     app.get('/', (req, res) => {
         var uid = req.params.id;
-        res.sendFile(__dirname + '/pages/homepage.html');
+        res.sendFile(__dirname + '/homepage.html');
     });
     console.log('We are live on ' + port);
 });

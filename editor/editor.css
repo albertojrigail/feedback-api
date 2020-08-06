@@ -1,0 +1,20 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:100,300,400);
+*,*:before,*:after{
+  box-sizing:border-box;
+  margin:0;padding:0;
+}
+
+.wrapper {
+  position:relative;
+  height:300px;
+  width: 65%;
+}
+
+#ace-editorid { 
+  font-size:.9em;
+  font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+  position: absolute;
+  top:0; right:0; bottom:0; left:0;
+  border:1px solid #ddd;
+  border-radius:10px;
+}
