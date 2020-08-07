@@ -60,7 +60,6 @@
     </style>
   </head>
 
-  
   <body class="py-4">
     <div class="container">
       <div class="container" style='padding-bottom: 10px;'>
@@ -78,11 +77,11 @@
           <div class="wrapper">
             <code id="ace-editorid"></code>
           </div>    
-          <br>      
+          <br/>      
           <button type="submit" formmethod="POST" btn btn-outline-primary>Submit🚀</button>
         </form>
-      <br>
-      <p class="lead">Your solution will be sent to the other user by email. <br>
+      <br/>
+      <p class="lead">Your solution will be sent to the other user by email. <br/>
         Thanks for contributing to an amazing peer reviewed system! ⚡️🤝</p>
     </div>
   </body>
@@ -111,7 +110,7 @@
     editor.getSession().setMode(mode);
   
     // Set editor text
-    var solution = '#---------------------------\n# Write your solution below';
+    var solution = '#---------------------------\n# Write your solution below\n';
     editor.session.setValue(solution);    
 
     // ProblemId
@@ -127,7 +126,7 @@
         // Set problem text
         let problem = '';
         prompt.forEach(paragraph => {
-          problem += paragraph + '<br><br>';
+          problem += paragraph + '<br/><br/>';
         });
         $('.problem').text(problem);
 
