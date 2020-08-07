@@ -12,11 +12,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 MongoClient.connect(db.url, { useNewUrlParser: true, useUnifiedTopology: true }, (err, database) =>{
     if (err) return console.log(err);
     var database = database.db('feedback-api')
-    require('/routes')(app, database);
     app.listen(port, '0.0.0.0');
 
     app.get('/', (req, res) => {
-        var uid = req.params.id;
         res.sendFile(__dirname + '/homepage.html');
     });
     console.log('We are live on ' + port);
