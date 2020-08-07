@@ -91,7 +91,6 @@
 
   <script>
     let searchParams = new URLSearchParams(window.location.search);
-    console.log(searchParams);
     // User Id
     if (searchParams.has('uid')){
       userId = searchParams.get('uid');
@@ -103,7 +102,17 @@
     // DateTime
     var datetime = searchParams.get('datetime');
 
-    let solutionTemplate = [''];
+    // Source: https://codepen.io/jakob-e/pen/EJuiK
+    // Editor script
+    var theme='ace/theme/cobalt';
+    var mode='ace/mode/python';
+    var editor= ace.edit('ace-editorid');
+    editor.setTheme(theme);
+    editor.getSession().setMode(mode);
+  
+    // Set editor text
+    var solution = '#---------------------------\n# Write your solution below';
+    editor.session.setValue(solution);    
 
     // ProblemId
     if(searchParams.has('pid')) {
@@ -118,28 +127,16 @@
         // Set problem text
         let problem = '';
         prompt.forEach(paragraph => {
-          problem += paragraph + '\n\n';
+          problem += paragraph + '<br><br>';
         });
         $('.problem').text(problem);
 
+        // set new editor text
+        solutionTemplate.forEach(line => {
+          solution += line + '\n';
+        });
+        editor.session.setValue(solution);
       });
     }
-    
-    // Source: https://codepen.io/jakob-e/pen/EJuiK
-    // Editor script
-    var theme='ace/theme/cobalt';
-    var mode='ace/mode/python';
-    var editor= ace.edit('ace-editorid');
-    editor.setTheme(theme);
-    editor.getSession().setMode(mode);
-    
-    // Set editor text
-    var solution = '#---------------------------\n# Write your solution below';
-    solutionTemplate.forEach(line => {
-          solution += line + '\n    ';
-        });
-    console.log(solution);
-    editor.session.setValue(solution);        
-
   </script>
 </html>
