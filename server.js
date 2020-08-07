@@ -14,5 +14,8 @@ MongoClient.connect(db.url, { useNewUrlParser: true, useUnifiedTopology: true },
     var database = database.db('feedback-api')
     app.listen(port, '0.0.0.0');
     require('./routes')(app, database);
+    app.get('/', (req, res) => {
+        res.sendFile('./homepage.html')
+    });
     console.log('We are live on ' + port);
 });
