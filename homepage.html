@@ -125,10 +125,11 @@
         let solutionTemplate = json['solution_template'];
 
         // Set problem text
-        $('.problem').text = '';
+        var problem = '';
         prompt.forEach(paragraph => {
-          $('.problem').text += paragraph + String.fromCharCode(13);
+          problem += '<p>' + paragraph +'</p>';
         });
+        $('.problem').text = problem;;
 
         // set new editor text
         solutionTemplate.forEach(line => {
