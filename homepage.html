@@ -129,11 +129,11 @@
         // Set problem text
         let problem = '<div>';
         prompt.forEach(paragraph => {
-          problem += '<p>' + paragraph + '</p><br/>';
+          problem += '<p>' + paragraph + '</p>';
         });
         problem += '</div>';
         document.querySelector('.multiline').innerHTML  = problem; 
-        
+
         // set new editor text
         solutionTemplate.forEach(line => {
           solution += line + '\n';
