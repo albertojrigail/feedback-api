@@ -15,7 +15,7 @@ MongoClient.connect(db.url, { useNewUrlParser: true, useUnifiedTopology: true },
     app.listen(port, '0.0.0.0');
     require('./routes')(app, database);
     app.get('/', (req, res) => {
-        res.sendFile(__dirname + '/homepage/homepage.html');
+        res.sendFile(__dirname + '/homepage/index.html');
     });
     console.log('We are live on ' + port);
 });
