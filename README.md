@@ -1,14 +1,6 @@
 # feedback-api
-This RESTful API supports the following requests:
+Express web application that allows users to solve a coding puzzle, and test their solution using an online IDE. Upon submission, users get an email with a code snippet of their solution, and they are prompted to give feedback to someone else. Then, the feedback recepient will receive an email with feedback.
 
-1. /feedback
+On the server side, the application connects to a MongoDB database to organize data from users, problems, feedback, and solutions, as well as sending emails.
 
-- POST /feedback/  Inserts an additional feedback entry in the database
-- GET /feedback/'id'   Returns the feedback entry with id from the database
-- GET /feedback   Returns a random feedback entry from the database
-  
-2. /solution
-
-- POST /solution/   Inserts an additional solution entry in the database
-- GET /solution/'id'   Returns the solution entry with id from the database
-- GET /solution  Returns a random solution entry from the database
+More complex tasks such as sending emails, capturing snippets, and compiling code are managed by third-party APIs.
